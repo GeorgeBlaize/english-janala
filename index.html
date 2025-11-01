@@ -35,6 +35,13 @@
         .logo {
             font-size: 24px;
             font-weight: bold;
+            display: flex;
+            align-items: center;
+        }
+        .logo img {
+            height: 32px;
+            width: 32px;
+            margin: 0 8px;
         }
         .nav-buttons {
             display: flex;
@@ -47,6 +54,17 @@
             padding: 8px 16px;
             border-radius: 5px;
             cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-weight: bold;
+        }
+        .nav-btn:hover {
+            background: #5a4fcf;
+        }
+        .nav-btn img {
+            height: 16px;
+            width: 16px;
         }
         /* Banner */
         #banner {
@@ -241,30 +259,90 @@
             text-align: center;
             border-top: 1px solid #ddd;
         }
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
         .footer-logo {
             font-size: 20px;
             font-weight: bold;
+            display: flex;
+            align-items: center;
             margin-bottom: 10px;
         }
+        .footer-logo img {
+            height: 32px;
+            width: 32px;
+            margin: 0 8px;
+        }
+        .footer-bengali {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 5px;
+        }
+        .footer-english {
+            font-size: 12px;
+            color: #999;
+        }
+        .social-section {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+        }
+        .follow-us {
+            font-size: 12px;
+            color: #666;
+            text-transform: uppercase;
+            margin-bottom: 5px;
+        }
         .social-icons {
-            margin-top: 10px;
+            display: flex;
+            gap: 10px;
         }
         .social-icons a {
-            margin: 0 10px;
-            text-decoration: none;
-            color: #666;
-            font-size: 24px;
+            display: block;
+        }
+        .social-icons img {
+            height: 20px;
+            width: 20px;
+        }
+        @media (max-width: 768px) {
+            .footer-content {
+                flex-direction: column;
+                gap: 20px;
+                text-align: center;
+            }
+            .social-section {
+                align-items: center;
+            }
         }
     </style>
 </head>
 <body>
     <!-- Navbar -->
     <nav id="navbar" style="display: none;">
-        <div class="logo">English <span class="bengali">ইজ</span> Easy!</div>
+        <div class="logo">
+            English
+            <img src="assets/logo.png" alt="Logo">
+            <span class="bengali">ইজ</span> Easy!
+        </div>
         <div class="nav-buttons">
-            <button id="faq-btn" class="nav-btn">FAQ</button>
-            <button id="learn-btn" class="nav-btn">Learn</button>
-            <button id="logout-btn" class="nav-btn">Logout</button>
+            <button id="faq-btn" class="nav-btn">
+                <img src="assets/fa-circle-question.png" alt="FAQ">
+                FAQ
+            </button>
+            <button id="learn-btn" class="nav-btn">
+                <img src="assets/fa-book-open.png" alt="Learn">
+                Learn
+            </button>
+            <button id="logout-btn" class="nav-btn">
+                <img src="assets/fa-arrow-right-from-bracket.png" alt="Logout">
+                Logout
+            </button>
         </div>
     </nav>
 
@@ -272,7 +350,7 @@
     <section id="banner">
         <div class="banner-content">
             <h1>English is Easy!</h1>
-            <p>আপনার ইংরেজি শেখার যাত্রা এখান থেকে শুরু করুন। আমরা আপনার জন্য Level ৯ এ Interactive Lessons তৈরি করেছি।</p>
+            <p>আপনি যদি আমাদের সাথে এখনই যাত্রা শুরু করেন তবে আপনি শীঘ্রই নিজের ইংরেজি দক্ষতা উন্নত করতে পারবেন। আমাদের সাথে আপনি সবচেয়ে সহজে ও Interactive Lessons এর মাধ্যমে শিখতে পারবেন Level A থেকে।</p>
             <form id="login-form">
                 <input type="text" id="name-input" placeholder="Enter your name">
                 <input type="password" id="pass-input" placeholder="Enter password">
@@ -280,7 +358,7 @@
             </form>
         </div>
         <div class="banner-image">
-            <img src="https://via.placeholder.com/300x400/4a90e2/ffffff?text=Smiling+Man" alt="Smiling Man">
+            <img src="assets/hero-student.png" alt="Smiling Man">
         </div>
     </section>
 
@@ -337,12 +415,30 @@
 
     <!-- Footer -->
     <footer>
-        <div class="footer-logo">English <span class="bengali">ইজ</span> Easy!</div>
-        <p>Providing ED Tech Applications since 2025</p>
-        <div class="social-icons">
-            <a href="https://www.facebook.com/" target="_blank">📘</a>
-            <a href="https://www.instagram.com/" target="_blank">📷</a>
-            <a href="https://github.com/" target="_blank">👨‍💻</a>
+        <div class="footer-content">
+            <div class="footer-left">
+                <div class="footer-logo">
+                    English
+                    <img src="assets/logo.png" alt="Logo">
+                    <span class="bengali">ইজ</span> Easy!
+                </div>
+                <p class="footer-bengali bengali">ইংরেজি শিখুন সহজে</p>
+                <p class="footer-english">Providing ED Tech Applications since 2025</p>
+            </div>
+            <div class="social-section">
+                <div class="follow-us">FOLLOW US</div>
+                <div class="social-icons">
+                    <a href="https://facebook.com" target="_blank">
+                        <img src="assets/fb-thumb.png" alt="Facebook">
+                    </a>
+                    <a href="https://instagram.com" target="_blank">
+                        <img src="assets/instagram-thumb.png" alt="Instagram">
+                    </a>
+                    <a href="https://github.com" target="_blank">
+                        <img src="assets/github-thumb.png" alt="GitHub">
+                    </a>
+                </div>
+            </div>
         </div>
     </footer>
 
