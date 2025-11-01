@@ -10,6 +10,7 @@ Built with **HTML5**, **CSS3**, **JavaScript (ES6)**, and powered by the **Progr
 
 ---
 
+---
 ## 🧩 Features  
 
 ### 🏠 **Home / Banner Section**
@@ -79,7 +80,7 @@ Built with **HTML5**, **CSS3**, **JavaScript (ES6)**, and powered by the **Progr
 ---
 
 ## 📂 **Project Structure**
-
+```
 english-is-easy/
 │
 ├── index.html # Main project file
@@ -95,7 +96,7 @@ english-is-easy/
 │ ├── fa-arrow-right-from-bracket.png
 │
 └── README.md # Project documentation
-
+```
 yaml
 Copy code
 
@@ -142,32 +143,46 @@ Or use a local server for better experience:
 bash
 Copy code
 npx live-server
-🎬 Demo Login Credentials
-Field	Value
-Password	123456
-Name	Any name you like
 
+---
+🎬 Demo Login Credentials
+
+Field	Value
+
+Password :	123456
+
+Name :	Any name you like
+
+---
 🧰 Dependencies
+
 SweetAlert2 — For alerts and confirmations
 
 Web Speech API — For pronunciation
 
 Programming Hero OpenAPI — For vocabulary data
+---
 
+----
 📱 Responsive Design
+
 Uses flexbox and grid for layout.
 
 Adapts gracefully to mobile, tablet, and desktop screens.
 
 Adjusts footer and navbar layout responsively.
+---
 
+----
 👨‍💻 Developer
+
 Jonathan George Blaize Purification
-
-
+----
+---
 💖 Acknowledgements
 Programming Hero API Team for providing the free English vocabulary API.
 
 SweetAlert2 for beautiful alert dialogs.
 
 Google Fonts for Bengali text support.
+---
