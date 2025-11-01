@@ -3,9 +3,534 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>English is Easy!</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+        .bengali {
+            font-family: 'Noto Sans Bengali', sans-serif; /* Assume font loaded */
+        }
+        /* Navbar */
+        #navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: white;
+            border-bottom: 1px solid #ddd;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            z-index: 1000;
+        }
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .nav-buttons {
+            display: flex;
+            gap: 10px;
+        }
+        .nav-btn {
+            background: #6c5ce7;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        /* Banner */
+        #banner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 50px 20px;
+            background: #f8f9fa;
+            min-height: 100vh;
+        }
+        .banner-content {
+            flex: 1;
+            padding-right: 20px;
+        }
+        .banner-content h1 {
+            color: #4a90e2;
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+        .banner-content p {
+            font-size: 18px;
+            margin-bottom: 30px;
+            color: #666;
+        }
+        #login-form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            max-width: 300px;
+        }
+        #login-form input {
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        #login-form button {
+            background: #6c5ce7;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .banner-image {
+            flex: 0 0 300px;
+        }
+        .banner-image img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+        /* Vocabulary Section */
+        #vocab-section {
+            padding: 100px 20px 50px;
+        }
+        .section-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .section-header h2 {
+            color: #4a90e2;
+            font-size: 36px;
+        }
+        #lesson-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+        .lesson-btn {
+            background: #6c5ce7;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .lesson-btn.active {
+            background: #a29bfe;
+        }
+        #vocab-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .word-card {
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .word-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .word-header h3 {
+            font-size: 24px;
+        }
+        .pronunciation {
+            color: #666;
+            font-style: italic;
+        }
+        .sound-btn, .details-btn {
+            background: none;
+            border: none;
+            font-size: 20px;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+        .word-meaning {
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+        .word-example {
+            margin-bottom: 10px;
+            font-style: italic;
+        }
+        .word-synonyms {
+            font-size: 14px;
+        }
+        #loading {
+            text-align: center;
+            font-size: 18px;
+            padding: 20px;
+        }
+        /* Modal */
+        #modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+        }
+        .modal-content {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            max-width: 500px;
+            position: relative;
+        }
+        .close {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 24px;
+            cursor: pointer;
+        }
+        #complete-btn {
+            background: #6c5ce7;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 20px;
+        }
+        /* FAQ */
+        #faq-section {
+            padding: 50px 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        #faq-section h2 {
+            color: #4a90e2;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .faq-item {
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 20px;
+        }
+        .faq-item h3 {
+            margin-bottom: 10px;
+        }
+        /* Footer */
+        footer {
+            background: #f8f9fa;
+            padding: 20px;
+            text-align: center;
+            border-top: 1px solid #ddd;
+        }
+        .footer-logo {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .social-icons {
+            margin-top: 10px;
+        }
+        .social-icons a {
+            margin: 0 10px;
+            text-decoration: none;
+            color: #666;
+            font-size: 24px;
+        }
+    </style>
 </head>
 <body>
-    
+    <!-- Navbar -->
+    <nav id="navbar" style="display: none;">
+        <div class="logo">English <span class="bengali">ইজ</span> Easy!</div>
+        <div class="nav-buttons">
+            <button id="faq-btn" class="nav-btn">FAQ</button>
+            <button id="learn-btn" class="nav-btn">Learn</button>
+            <button id="logout-btn" class="nav-btn">Logout</button>
+        </div>
+    </nav>
+
+    <!-- Banner -->
+    <section id="banner">
+        <div class="banner-content">
+            <h1>English is Easy!</h1>
+            <p>আপনার ইংরেজি শেখার যাত্রা এখান থেকে শুরু করুন। আমরা আপনার জন্য Level ৯ এ Interactive Lessons তৈরি করেছি।</p>
+            <form id="login-form">
+                <input type="text" id="name-input" placeholder="Enter your name">
+                <input type="password" id="pass-input" placeholder="Enter password">
+                <button type="submit">Get Started</button>
+            </form>
+        </div>
+        <div class="banner-image">
+            <img src="https://via.placeholder.com/300x400/4a90e2/ffffff?text=Smiling+Man" alt="Smiling Man">
+        </div>
+    </section>
+
+    <!-- Vocabulary Section -->
+    <section id="vocab-section" style="display: none;">
+        <div class="section-header">
+            <h2>Let's Learn Vocabularies</h2>
+        </div>
+        <div class="lesson-buttons" id="lesson-buttons">
+            <!-- Dynamic lesson buttons -->
+        </div>
+        <div id="loading" style="display: none;">Loading vocabulary...</div>
+        <div class="vocab-container" id="vocab-container">
+            <p>Select a lesson to start learning.</p>
+        </div>
+    </section>
+
+    <!-- Modal -->
+    <div id="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h3 id="modal-word"></h3>
+            <p id="modal-meaning" style="font-weight: bold;"></p>
+            <p id="modal-sentence" style="font-style: italic; margin: 10px 0;"></p>
+            <div id="modal-synonyms"></div>
+            <button id="complete-btn">Complete Learning</button>
+        </div>
+    </div>
+
+    <!-- FAQ Section -->
+    <section id="faq-section" style="display: none;">
+        <h2>Frequently Asked Questions</h2>
+        <div class="faq-item">
+            <h3>1. How can I start learning English on this website?</h3>
+            <p>You can start by exploring our beginner lessons, interactive exercises, and quizzes. We also offer structured courses to guide you step by step.</p>
+        </div>
+        <div class="faq-item">
+            <h3>2. Is this website free to use?</h3>
+            <p>Yes, this website is free to use.</p>
+        </div>
+        <div class="faq-item">
+            <h3>3. Do I need to create an account?</h3>
+            <p>No, you do not need to create an account to access the content. However, creating an account allows you to track your progress.</p>
+        </div>
+        <div class="faq-item">
+            <h3>4. How can I build my English vocabulary?</h3>
+            <p>You can build your English vocabulary by regularly practicing with our lessons, quizzes, and interactive exercises. Consistency is key!</p>
+        </div>
+        <div class="faq-item">
+            <h3>5. Do you offer certificates for completed courses?</h3>
+            <p>Yes, we provide certificates upon completion of courses to certify your learning achievement.</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-logo">English <span class="bengali">ইজ</span> Easy!</div>
+        <p>Providing ED Tech Applications since 2025</p>
+        <div class="social-icons">
+            <a href="https://www.facebook.com/" target="_blank">📘</a>
+            <a href="https://www.instagram.com/" target="_blank">📷</a>
+            <a href="https://github.com/" target="_blank">👨‍💻</a>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        // Pronounce function
+        function pronounceWord(word) {
+            const utterance = new SpeechSynthesisUtterance(word);
+            utterance.lang = 'en-EN';
+            window.speechSynthesis.speak(utterance);
+        }
+
+        // Open modal
+        function openModal(id) {
+            fetch(`https://openapi.programming-hero.com/api/word/${id}`)
+                .then(res => res.json())
+                .then(data => {
+                    const detail = data.data;
+                    if (!detail || !detail.word) return;
+                    document.getElementById('modal-word').textContent = `${detail.word} (${detail.pronunciation})`;
+                    document.getElementById('modal-meaning').textContent = detail.meaning;
+                    document.getElementById('modal-sentence').textContent = detail.sentence;
+                    const synDiv = document.getElementById('modal-synonyms');
+                    synDiv.innerHTML = `<strong>Synonyms:</strong> ${detail.synonyms ? detail.synonyms.join(', ') : 'None'}`;
+                    document.getElementById('modal').style.display = 'flex';
+                })
+                .catch(err => console.error(err));
+        }
+
+        // Load lessons
+        async function loadLessons() {
+            try {
+                const res = await fetch('https://openapi.programming-hero.com/api/levels/all');
+                const data = await res.json();
+                const levels = data.data || [];
+                const buttonsContainer = document.getElementById('lesson-buttons');
+                buttonsContainer.innerHTML = '';
+                levels.forEach(level => {
+                    const btn = document.createElement('button');
+                    btn.className = 'lesson-btn';
+                    btn.textContent = `Lesson ${level.level_no}`;
+                    btn.dataset.level = level.level_no;
+                    btn.addEventListener('click', async (e) => {
+                        await loadWords(level.level_no, e.target);
+                    });
+                    buttonsContainer.appendChild(btn);
+                });
+            } catch (err) {
+                console.error(err);
+            }
+        }
+
+        // Load words for a level
+        async function loadWords(level, activeBtn) {
+            document.getElementById('loading').style.display = 'block';
+            const container = document.getElementById('vocab-container');
+            container.innerHTML = '';
+            try {
+                const res = await fetch(`https://openapi.programming-hero.com/api/level/${level}`);
+                const data = await res.json();
+                const words = data.data || [];
+                document.getElementById('loading').style.display = 'none';
+
+                // Highlight active button
+                document.querySelectorAll('.lesson-btn').forEach(b => b.classList.remove('active'));
+                if (activeBtn) activeBtn.classList.add('active');
+
+                if (words.length === 0) {
+                    container.innerHTML = '<p>No words found for this lesson.</p>';
+                    return;
+                }
+
+                // Fetch details for each word
+                const wordPromises = words.map(async (word) => {
+                    try {
+                        const detailRes = await fetch(`https://openapi.programming-hero.com/api/word/${word.id}`);
+                        const detailData = await detailRes.json();
+                        const detail = detailData.data;
+                        if (!detail || !detail.word) return null;
+                        return createWordCard(detail);
+                    } catch (err) {
+                        console.error(err);
+                        return null;
+                    }
+                });
+
+                const cards = await Promise.all(wordPromises);
+                cards.forEach(card => {
+                    if (card) container.appendChild(card);
+                });
+            } catch (err) {
+                document.getElementById('loading').style.display = 'none';
+                container.innerHTML = '<p>Error loading words. Please try again.</p>';
+                console.error(err);
+            }
+        }
+
+        // Create word card
+        function createWordCard(detail) {
+            const card = document.createElement('div');
+            card.className = 'word-card';
+            card.innerHTML = `
+                <div class="word-header">
+                    <h3>${detail.word} <span class="pronunciation">(${detail.pronunciation})</span></h3>
+                    <div>
+                        <button class="sound-btn" onclick="pronounceWord('${detail.word}')">🔊</button>
+                        <button class="details-btn" onclick="openModal(${detail.id})">ℹ️</button>
+                    </div>
+                </div>
+                <div class="word-meaning">
+                    <strong>Meaning:</strong> ${detail.meaning}
+                </div>
+                <div class="word-example">
+                    <p>${detail.sentence || 'No example available.'}</p>
+                </div>
+                <div class="word-synonyms">
+                    <strong>Synonyms:</strong> ${detail.synonyms ? detail.synonyms.join(', ') : 'None'}
+                </div>
+            `;
+            return card;
+        }
+
+        // Event listeners
+        document.getElementById('login-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const name = document.getElementById('name-input').value.trim();
+            const pass = document.getElementById('pass-input').value;
+            if (!name) {
+                Swal.fire('Error!', 'Please enter your name.', 'error');
+                return;
+            }
+            if (pass !== '123456') {
+                Swal.fire('Error!', 'Invalid password.', 'error');
+                return;
+            }
+            Swal.fire('Success!', `Welcome, ${name}! You are logged in.`, 'success');
+            document.getElementById('banner').style.display = 'none';
+            document.getElementById('navbar').style.display = 'flex';
+            document.getElementById('vocab-section').style.display = 'block';
+            document.getElementById('faq-section').style.display = 'block';
+            loadLessons();
+        });
+
+        document.getElementById('logout-btn').addEventListener('click', () => {
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, logout!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    document.getElementById('banner').style.display = 'flex';
+                    document.getElementById('navbar').style.display = 'none';
+                    document.getElementById('vocab-section').style.display = 'none';
+                    document.getElementById('faq-section').style.display = 'none';
+                    document.getElementById('login-form').reset();
+                    document.getElementById('vocab-container').innerHTML = '<p>Select a lesson to start learning.</p>';
+                    document.getElementById('lesson-buttons').innerHTML = '';
+                    Swal.fire('Logged out!', 'You have been logged out.', 'success');
+                }
+            });
+        });
+
+        document.getElementById('faq-btn').addEventListener('click', () => {
+            document.getElementById('faq-section').scrollIntoView({ behavior: 'smooth' });
+        });
+
+        document.getElementById('learn-btn').addEventListener('click', () => {
+            document.getElementById('vocab-section').scrollIntoView({ behavior: 'smooth' });
+        });
+
+        document.querySelector('.close').addEventListener('click', () => {
+            document.getElementById('modal').style.display = 'none';
+        });
+
+        document.getElementById('complete-btn').addEventListener('click', () => {
+            document.getElementById('modal').style.display = 'none';
+        });
+
+        // Close modal on outside click
+        document.getElementById('modal').addEventListener('click', (e) => {
+            if (e.target === document.getElementById('modal')) {
+                document.getElementById('modal').style.display = 'none';
+            }
+        });
+    </script>
 </body>
 </html>
