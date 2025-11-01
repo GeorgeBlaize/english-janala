@@ -54,6 +54,8 @@ Built with **HTML5**, **CSS3**, **JavaScript (ES6)**, and powered by the **Progr
 
 ---
 
+---
+
 ## 🛠️ **Technologies Used**
 
 | Category | Tools / Libraries |
@@ -66,6 +68,7 @@ Built with **HTML5**, **CSS3**, **JavaScript (ES6)**, and powered by the **Progr
 | **Icons & Assets** | Local PNG assets (`assets/` folder) |
 
 ---
+---
 
 ## 🧠 **How It Works**
 
@@ -76,7 +79,7 @@ Built with **HTML5**, **CSS3**, **JavaScript (ES6)**, and powered by the **Progr
 5. ℹ️ Click the info icon to view detailed meaning, synonyms, and examples.  
 6. ✅ Click “Complete Learning” to close the modal and continue.  
 7. 🚪 Click “Logout” to exit safely (SweetAlert2 confirmation included).  
-
+---
 ---
 
 ## 📂 **Project Structure**
@@ -102,6 +105,7 @@ Copy code
 
 ---
 
+---
 ## 🧾 **APIs Used**
 
 ### 1. Get All Levels  
@@ -121,7 +125,7 @@ GET https://openapi.programming-hero.com/api/word/{id}
 
 yaml
 Copy code
-
+---
 ---
 
 ## ⚙️ **Setup Instructions**
@@ -163,7 +167,7 @@ Web Speech API — For pronunciation
 Programming Hero OpenAPI — For vocabulary data
 ---
 
-----
+---
 📱 Responsive Design
 
 Uses flexbox and grid for layout.
@@ -171,7 +175,7 @@ Uses flexbox and grid for layout.
 Adapts gracefully to mobile, tablet, and desktop screens.
 
 Adjusts footer and navbar layout responsively.
----
+
 
 ----
 👨‍💻 Developer
@@ -185,4 +189,4 @@ Programming Hero API Team for providing the free English vocabulary API.
 SweetAlert2 for beautiful alert dialogs.
 
 Google Fonts for Bengali text support.
----
+
